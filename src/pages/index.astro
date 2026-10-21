@@ -1,0 +1,221 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { Image } from 'astro:assets';
+import Faq from '../components/Faq.astro';
+import { servizi, clienti, site } from '../data/site';
+import { faqPage } from '../lib/seo';
+import heroImg from '../assets/img/emilio-wip1.jpg';
+import founderImg from '../assets/img/EmilioZucca.jpg';
+
+const faq = [
+  { q: 'Di cosa si occupa Emilio Zucca Web Strategies?', a: 'Offre consulenza di marketing strategico e comunicazione digitale alle aziende italiane: checkup START, coaching di marketing strategico, formazione su misura e progettazione della strategia digitale. L’approccio è “prima l’analisi e la strategia, poi la tecnologia”.' },
+  { q: 'Da dove si comincia con il marketing di una PMI?', a: 'Dal checkup START: una fotografia approfondita dello stato attuale di mission, target, posizionamento, competitor, social, sito web e SEO. Il risultato è un report di circa 60 pagine con un piano di azioni concreto, tempistiche incluse.' },
+  { q: 'Serve conoscere la tecnologia per fare marketing?', a: 'No. Un sito o una pagina social sono solo strumenti: senza una strategia a monte non producono risultati. Il lavoro di coaching serve proprio a capire come funzionano le cose senza dover studiare la tecnologia né frequentare corsi tecnici.' },
+  { q: 'Quanto dura una collaborazione?', a: 'Dipende dall’esigenza: per una domanda puntuale può bastare un’ora, per sbloccare una parte del piano marketing un paio di giornate, per partire da zero un percorso più lungo. I pacchetti di consulenza sono ritagliati sulle esigenze, senza i lunghi vincoli temporali tipici di agenzie e consulenti.' },
+  { q: 'Dove lavora Emilio Zucca?', a: 'Lo studio è a Roma (via Giovanni Re 105) e la consulenza è rivolta ad aziende di tutta Italia: gli incontri possono svolgersi anche in videochiamata.' },
+];
+
+
+const articoli = (await getCollection('articoli')).sort((a, b) => +b.data.date - +a.data.date).slice(0, 3);
+const fasi = [
+  ['Studio del mercato e dei competitor', 'Chi c’è là fuori, cosa offre e dove puoi davvero differenziarti.'],
+  ['Conoscenza approfondita del target', 'Non solo “quanti anni ha”: quali problemi ha e perché dovrebbe scegliere te.'],
+  ['Pianificazione strategica', 'Obiettivi, canali e iniziative di marketing e comunicazione, messi in fila.'],
+  ['Implementazione e ottimizzazione', 'Si parte, si misura, si corregge. Con i dati, non a sensazione.'],
+];
+---
+
+<Base transparentHeader seoTitle="Consulenza di Marketing e Strategia Digitale | Emilio Zucca" description="Consulenza di marketing strategico e comunicazione digitale per PMI: checkup, coaching, formazione e strategia digitale. Prima l’analisi, poi la tecnologia." image={heroImg} imageAlt="Emilio Zucca, consulente di marketing e comunicazione digitale" graph={[faqPage(faq)]}>
+  <section class="hero">
+    <Image class="hero-bg" src={heroImg} alt="Emilio Zucca al lavoro con il portatile" widths={[800, 1280, 1920]} sizes="100vw" loading="eager" fetchpriority="high" />
+    <div class="wrap hero-in">
+      <p class="eyebrow">Emilio Zucca Web Strategies</p>
+      <h1>Consulenza di <span class="mark-d">Innovazione, Marketing</span> e Comunicazione Digitale</h1>
+      <p class="hero-lead">Prima l’analisi e la strategia, poi la tecnologia.<br />Niente trucchi, ricette segrete né promesse milionarie da guru.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#servizi">Scopri i servizi</a>
+        <a class="btn btn--ghost" href="/contatti/">Parliamone</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="strategia">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Il primo passo</p>
+        <h2>Prima di tutto, <span class="mark">una strategia</span></h2>
+      </div>
+      <div class="prose-l">
+        <p>Aprire un negozio in un luogo casuale, senza aver studiato <strong>mercato</strong>, <strong>competitor</strong> e <strong>potenziali clienti</strong>, non è una garanzia di successo.</p>
+        <p>Lo stesso vale per il web: “aprire un sito” o “creare una pagina Facebook” saltando lo studio preventivo di una <strong>strategia</strong> non porta risultati consistenti. <strong>Un sito o una pagina social da soli non fanno niente</strong>: sono strumenti utili solo dentro un disegno più ampio.</p>
+        <p>Pensi di “fare marketing” assoldando il social media manager di turno o il freelance che sviluppa il sito? Parliamone prima.</p>
+        <p><a class="btn" href="/contatti/">Prenota una chiacchierata conoscitiva</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="servizi">
+    <div class="wrap">
+      <p class="eyebrow">Servizi</p>
+      <h2>Cosa possiamo fare per te e per la tua azienda</h2>
+      <div class="cards">
+        {servizi.map((s) => (
+          <a class="svc" href={s.href}>
+            <Image src={s.image} alt={s.title} widths={[320, 480, 640]} sizes="(max-width: 700px) 90vw, 280px" loading="lazy" />
+            <div class="svc-body">
+              <span class="svc-k">{s.kicker}</span>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+              <span class="svc-go">Scopri di più →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" id="missione">
+    <div class="wrap">
+      <p class="eyebrow">La nostra missione</p>
+      <h2 class="narrow">Aiutare le aziende a fare marketing in modo consapevole</h2>
+      <p class="lead-d">Si parte da una <a href="/start/">fotografia dello stato attuale</a>: il livello di “maturità” di marketing e comunicazione. Poi, dopo uno studio accurato del <a href="/articoli/posizionamento-perche-importante/">posizionamento</a>, si traccia il percorso di crescita, per tappe.</p>
+      <ol class="steps">
+        {fasi.map(([t, d], i) => (
+          <li><span class="n">{i + 1}</span><h3>{t}</h3><p>{d}</p></li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="articoli">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <p class="eyebrow">Dal blog</p>
+          <h2>Strategia digitale: ultimi articoli</h2>
+        </div>
+        <a class="btn btn--ghost" href="/articoli/">Tutti gli articoli</a>
+      </div>
+      <div class="art-grid">
+        {articoli.map((a) => <ArticleCard post={a} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="chi-sono">
+    <div class="wrap founder">
+      <Image src={founderImg} alt="Ritratto di Emilio Zucca, consulente di marketing e comunicazione digitale" widths={[380, 760]} sizes="(max-width: 800px) 320px, 380px" loading="lazy" />
+      <div>
+        <p class="eyebrow">Chi sono</p>
+        <h2>Emilio Zucca</h2>
+        <p class="role">Digital Marketing and Communication Advisor</p>
+        <p>Consulente da oltre 20 anni, esperto nello studio di Strategie di Marketing e Comunicazione Digitale. Dopo una lunga esperienza come consulente per aziende multinazionali ho deciso di dare valore alle mie competenze aiutando le aziende italiane a sviluppare il proprio potenziale con l’implementazione ragionata di strategie di marketing e comunicazione.</p>
+        <p>Al terzo decennio di esperienza professionale, con 3 figli e 3 album rock pubblicati, continuo a muovermi tra creatività e metodo: unire competenza e ricerca di soluzioni nuove, nel modo più efficace possibile.</p>
+        <p class="social-row">
+          <a href={site.social.linkedin} rel="noopener">LinkedIn</a>
+          <a href={site.social.instagram} rel="noopener">Instagram</a>
+          <a href={site.social.facebook} rel="noopener">Facebook</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap video">
+      <div>
+        <p class="eyebrow">In 2 minuti</p>
+        <h2>Marketing a breve o a lungo termine?</h2>
+        <p>Una riflessione video su un dilemma che incontrano quasi tutti gli imprenditori.</p>
+      </div>
+      <div class="video-frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/zs3mWNlHBh4" title="Marketing a breve o a lungo termine?" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt clients">
+    <div class="wrap">
+      <p class="eyebrow">Fiducia</p>
+      <h2>Alcune delle aziende supportate</h2>
+      <ul class="logos">
+        {clienti.map((c) => <li><Image src={c.src} alt={c.name} height={112} loading="lazy" /></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="wrap"><Faq items={faq} title="Domande frequenti sulla consulenza" /></div>
+  </section>
+
+  <section class="cta">
+    <div class="wrap">
+      <h2>Parliamo della strategia digitale della tua azienda?</h2>
+      <p>Un primo appuntamento conoscitivo, senza impegno.</p>
+      <a class="btn" href="/contatti/">Contattami</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { position: relative; min-height: min(92vh, 780px); display: grid; align-items: center; color: #fff; overflow: hidden; background: #111; }
+  :global(.hero-bg) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 30%; }
+  .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.82) 0%, rgba(0,0,0,.55) 55%, rgba(0,0,0,.25) 100%); }
+  .hero-in { position: relative; z-index: 2; padding-block: 8rem 5rem; }
+  .hero h1 { max-width: 16ch; margin-bottom: .5em; }
+  .mark-d { color: var(--lime); }
+  .hero .eyebrow { color: #e0e0e0; }
+  .hero-lead { font-size: clamp(1.1rem, 2vw, 1.4rem); max-width: 40ch; color: #eee; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+
+  .split { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+  .prose-l p { margin: 0 0 1.1em; font-size: 1.12rem; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+  .svc { background: #fff; border-radius: var(--radius); overflow: hidden; text-decoration: none; border: 1px solid var(--line); display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
+  .svc:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,.1); }
+  .svc :global(img) { aspect-ratio: 5/3; object-fit: cover; width: 100%; }
+  .svc-body { padding: 1.4rem 1.4rem 1.6rem; display: flex; flex-direction: column; gap: .4rem; flex: 1; }
+  .svc-k { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
+  .svc h3 { margin: 0; }
+  .svc p { margin: 0; color: var(--ink-2); font-size: .98rem; }
+  .svc-go { margin-top: auto; padding-top: .8rem; font-family: var(--font-head); font-weight: 700; }
+
+  .narrow { max-width: 22ch; }
+  .lead-d { max-width: 62ch; font-size: 1.15rem; color: #d7d7d2; }
+  .lead-d a { color: var(--lime); }
+  .steps { list-style: none; padding: 0; margin: 3rem 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; counter-reset: s; }
+  .steps li { border-top: 1px solid #333; padding-top: 1.2rem; }
+  .steps .n { display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: var(--lime); color: var(--ink); font-family: var(--font-head); font-weight: 700; margin-bottom: .8rem; }
+  .steps h3 { font-size: 1.15rem; }
+  .steps p { margin: 0; color: #b9b9b4; font-size: .98rem; }
+
+  .head-row { display: flex; justify-content: space-between; align-items: end; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .head-row h2 { margin: 0; }
+  .art-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.8rem; }
+
+  .founder { display: grid; grid-template-columns: minmax(240px, 380px) 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .founder :global(img) { border-radius: var(--radius); width: 100%; height: auto; box-shadow: 14px 14px 0 var(--lime); }
+  .role { font-family: var(--font-head); font-weight: 600; color: var(--ink-2); margin-top: -.4rem; }
+  .social-row { display: flex; gap: 1.2rem; font-family: var(--font-head); font-weight: 600; }
+
+  .video { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+  .video-frame { aspect-ratio: 16/9; border-radius: var(--radius); overflow: hidden; background: #000; }
+  .video-frame iframe { width: 100%; height: 100%; border: 0; }
+
+  .logos { list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.2rem; align-items: center; }
+  .logos li { background: #fff; border-radius: 12px; padding: 1.2rem; display: grid; place-items: center; height: 100px; border: 1px solid var(--line); }
+  .logos :global(img) { max-height: 56px; width: auto; object-fit: contain; filter: grayscale(1); opacity: .75; transition: .2s; }
+  .logos li:hover :global(img) { filter: none; opacity: 1; }
+
+  .cta { background: var(--lime); text-align: center; padding-block: clamp(3.5rem, 8vw, 6rem); }
+  .cta h2 { max-width: 20ch; margin-inline: auto; }
+  .cta .btn { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .cta .btn:hover { background: #222; }
+
+  @media (max-width: 800px) {
+    .split, .founder, .video { grid-template-columns: 1fr; }
+    .founder :global(img) { max-width: 320px; }
+  }
+</style>

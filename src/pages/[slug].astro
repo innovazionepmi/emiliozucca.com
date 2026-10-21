@@ -1,0 +1,103 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image, getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Faq from '../components/Faq.astro';
+import { site } from '../data/site';
+import { faqPage, service } from '../lib/seo';
+
+export async function getStaticPaths() {
+  const pagine = await getCollection('pagine');
+  return pagine.map((p) => ({ params: { slug: p.id }, props: { p } }));
+}
+
+const { p } = Astro.props;
+const { Content } = await render(p);
+const d = p.data;
+const path = `/${p.id}/`;
+const withHero = d.hero && !!d.image;
+const crumbs = [{ name: d.service ?? d.title, path }];
+const imgUrl = d.image ? new URL((await getImage({ src: d.image, width: 1200 })).src, site.url).toString() : undefined;
+const graph = [
+  ...(d.service ? [service({ path, name: d.service, description: d.description, image: imgUrl })] : []),
+  ...(d.faq?.length ? [faqPage(d.faq)] : []),
+];
+---
+
+<Base title={d.title} seoTitle={d.seoTitle} description={d.description} image={d.image} imageAlt={d.imageAlt ?? d.title} noindex={d.noindex} crumbs={crumbs} graph={graph}>
+  {withHero ? (
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <Breadcrumbs items={crumbs} />
+          {d.eyebrow && <p class="eyebrow">{d.eyebrow}</p>}
+          <h1>{d.title}</h1>
+          <p class="lead">{d.description}</p>
+          <div class="hero-cta">
+            <a class="btn" href="/contatti/">Richiedi un colloquio</a>
+            <a class="btn btn--ghost" href={site.whatsapp} rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+        <Image src={d.image!} alt={d.imageAlt ?? ''} widths={[480, 720, 960]} sizes="(max-width: 800px) 92vw, 520px" loading="eager" fetchpriority="high" />
+      </div>
+    </section>
+  ) : (
+    <section class="hero hero--plain">
+      <div class="wrap">
+        <Breadcrumbs items={crumbs} />
+        {d.eyebrow && <p class="eyebrow">{d.eyebrow}</p>}
+        <h1>{d.title}</h1>
+        <p class="lead">{d.description}</p>
+      </div>
+    </section>
+  )}
+
+  <div class="wrap body"><div class="page-prose prose"><Content /></div></div>
+
+  {d.faq && <div class="wrap faq-sec"><Faq items={d.faq} /></div>}
+
+  {d.cta && (
+    <section class="cta-box">
+      <div class="wrap">
+        <h2>Parliamone</h2>
+        <p>Un primo colloquio conoscitivo, senza impegno: scrivimi o chiamami.</p>
+        <div class="cta-row">
+          <a class="btn" href="/contatti/">Contattami</a>
+          <a class="btn btn--ghost" href={`tel:${site.phoneHref}`}>{site.phone}</a>
+        </div>
+      </div>
+    </section>
+  )}
+</Base>
+
+<style is:global>
+  .hero { background: var(--paper-2); padding-block: clamp(2.5rem, 6vw, 5rem); overflow: hidden; }
+  .hero--plain { background: transparent; padding-bottom: 1rem; }
+  .hero--plain .wrap { max-width: 860px; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+  .hero .lead { font-size: 1.25rem; color: var(--ink-2); max-width: 46ch; }
+  .hero-cta, .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.8rem; }
+  .cta-row { justify-content: center; }
+  .hero-grid img { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); box-shadow: 14px 14px 0 var(--lime); }
+  .body { padding-block: 3rem 3rem; }
+  .faq-sec { padding-bottom: 5rem; }
+  .cta-box { background: var(--lime); text-align: center; padding-block: 4.5rem; }
+  .cta-box .btn { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .cta-box .btn--ghost { background: transparent; color: var(--ink); }
+
+  /* Pagine servizi: prosa larga con elementi più ricchi */
+  .page-prose { max-width: 960px; font-size: 1.1rem; }
+  .page-prose > p, .page-prose > ul, .page-prose > ol, .page-prose > h2, .page-prose > h3, .page-prose > blockquote, .page-prose > hr { max-width: var(--prose); margin-inline: auto; }
+  .page-prose > h2 { position: relative; padding-top: 1.1rem; }
+  .page-prose > h2::before { content: ''; position: absolute; top: 0; left: 0; width: 48px; height: 5px; background: var(--lime); border-radius: 3px; }
+  .page-prose > ul { list-style: none; padding: 0; }
+  .page-prose > ul > li { position: relative; padding-left: 2rem; }
+  .page-prose > ul > li::before { content: ''; position: absolute; left: 0; top: .5em; width: 1.15rem; height: 1.15rem; border-radius: 50%; background: var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.7 2.7L12 5.5' fill='none' stroke='%230a0a0a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat; }
+  .page-prose > ol { list-style: none; padding: 0; counter-reset: step; display: grid; gap: 1rem; }
+  .page-prose > ol > li { counter-increment: step; position: relative; background: var(--paper-2); border-radius: var(--radius); padding: 1.2rem 1.4rem 1.2rem 4.2rem; margin: 0; }
+  .page-prose > ol > li::before { content: counter(step); position: absolute; left: 1.1rem; top: 1.1rem; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--lime); display: grid; place-items: center; font-family: var(--font-head); font-weight: 700; }
+  .page-prose > blockquote { font-family: var(--font-head); font-size: 1.35rem; line-height: 1.4; }
+
+  @media (max-width: 800px) { .hero-grid { grid-template-columns: 1fr; } .hero-grid img { order: -1; max-width: 480px; } }
+</style>
