@@ -1,0 +1,16 @@
+---
+// Form HubSpot incorporato. L'id dei form sta in site.ts (hubspotForms).
+// Nota: HubSpot lo mostra in un iframe, quindi lo stile (colori, font, pulsante)
+// si modifica dall'editor dei form di HubSpot, non da CSS del sito.
+import { site } from '../data/site';
+
+interface Props { formId: string; id?: string }
+const { formId, id = 'hs-form' } = Astro.props;
+const portalId = site.hubspotPortalId;
+---
+
+<div id={id}></div>
+<script is:inline charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+<script is:inline define:vars={{ portalId, formId, id }}>
+  hbspt.forms.create({ portalId: portalId, formId: formId, region: 'na1', target: '#' + id });
+</script>

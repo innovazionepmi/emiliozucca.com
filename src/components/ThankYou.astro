@@ -1,0 +1,28 @@
+---
+// Pagina di ringraziamento (TYP) dopo l'invio di un form HubSpot.
+import Base from '../layouts/Base.astro';
+
+interface Props { title: string; mark: string; description: string; lead: string; pageTitle: string }
+const { title, mark, description, lead, pageTitle } = Astro.props;
+---
+
+<Base title={pageTitle} description={description} noindex>
+  <section class="section">
+    <div class="wrap typ">
+      <p class="eyebrow">Richiesta inviata</p>
+      <h1>{title} <span class="mark">{mark}</span></h1>
+      <p class="lead">{lead}</p>
+      <p>Nel frattempo, se vuoi, puoi leggere gli ultimi articoli o scoprire come lavoriamo.</p>
+      <p class="cta-row">
+        <a class="btn" href="/articoli/">Leggi gli articoli</a>
+        <a class="btn btn--ghost" href="/">Torna alla home</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .typ { max-width: 720px; }
+  .lead { font-size: 1.2rem; color: var(--ink-2); }
+  .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+</style>

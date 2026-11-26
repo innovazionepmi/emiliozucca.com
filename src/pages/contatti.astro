@@ -1,24 +1,28 @@
 ---
 import Base from '../layouts/Base.astro';
+import HubspotForm from '../components/HubspotForm.astro';
 import { site } from '../data/site';
 
 const crumbs = [{ name: 'Contatti', path: '/contatti/' }];
 ---
 
-<Base title="Contatti" description="Contatta Emilio Zucca per una consulenza di marketing e comunicazione digitale: telefono, WhatsApp, email. Studio a Roma." crumbs={crumbs} webPageType="ContactPage">
+<Base title="Contatti" description="Contatta Emilio Zucca per una consulenza di marketing e comunicazione digitale: compila il form, scrivi o chiama. Studio a Roma." crumbs={crumbs} webPageType="ContactPage">
   <section class="section">
     <div class="wrap grid">
       <div>
         <p class="eyebrow">Contatti</p>
         <h1>Scriviamoci, <span class="mark">senza impegno</span></h1>
-        <p class="lead">Per informazioni su consulenza, coaching o formazione scrivimi o chiamami: ti rispondo a stretto giro, con il canale che preferisci.</p>
+        <p class="lead">Per informazioni su consulenza, coaching o formazione compila il form: ti rispondiamo a stretto giro. Se preferisci, scrivici o chiamaci.</p>
+        <ul class="ch">
+          <li><a href={`tel:${site.phoneHref}`}><span>Telefono</span><strong>{site.phone}</strong></a></li>
+          <li><a href={`mailto:${site.email}?subject=Richiesta%20di%20informazioni`}><span>Email</span><strong>{site.email}</strong></a></li>
+          <li><a href={site.social.linkedin} rel="noopener"><span>LinkedIn</span><strong>Emilio Zucca</strong></a></li>
+        </ul>
       </div>
-      <ul class="ch">
-        <li><a href={site.whatsapp} rel="noopener"><span>WhatsApp</span><strong>{site.phone}</strong></a></li>
-        <li><a href={`tel:${site.phoneHref}`}><span>Telefono</span><strong>{site.phone}</strong></a></li>
-        <li><a href={`mailto:${site.email}?subject=Richiesta%20di%20informazioni`}><span>Email</span><strong>{site.email}</strong></a></li>
-        <li><a href={site.social.linkedin} rel="noopener"><span>LinkedIn</span><strong>Emilio Zucca</strong></a></li>
-      </ul>
+      <div class="form-card">
+        <h2>Scrivici qui</h2>
+        <HubspotForm formId={site.hubspotForms.contact} id="hs-contact-form" />
+      </div>
     </div>
     <div class="wrap addr">
       <p><strong>{site.name}</strong><br />{site.address} · P.IVA {site.vat}</p>
@@ -26,14 +30,17 @@ const crumbs = [{ name: 'Contatti', path: '/contatti/' }];
   </section>
 </Base>
 
+
 <style>
-  .grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
   .lead { font-size: 1.2rem; color: var(--ink-2); max-width: 46ch; }
-  .ch { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
-  .ch a { display: flex; flex-direction: column; padding: 1.2rem 1.5rem; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; background: #fff; transition: .2s; }
+  .ch { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: .8rem; }
+  .ch a { display: flex; flex-direction: column; padding: 1rem 1.4rem; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; background: #fff; transition: .2s; }
   .ch a:hover { border-color: var(--ink); transform: translateX(6px); box-shadow: -6px 0 0 var(--lime); }
   .ch span { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); }
-  .ch strong { font-family: var(--font-head); font-size: 1.3rem; }
+  .ch strong { font-family: var(--font-head); font-size: 1.25rem; }
+  .form-card h2 { font-size: 1.5rem; margin-bottom: 1rem; }
   .addr { margin-top: 4rem; color: var(--ink-2); }
+
   @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
 </style>

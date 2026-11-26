@@ -23,11 +23,15 @@ export const site = {
   email: 'info@emiliozucca.com',
   phone: '+39 392 759 0711',
   phoneHref: '+393927590711',
-  whatsapp: 'https://wa.me/393927590711',
   address: 'Via Giovanni Re 105, 00134 Roma',
   vat: '14454021008',
   gtmId: 'GTM-NJFGNFR',
   hubspotPortalId: '4160510',
+  // Form HubSpot incorporati (ognuno rimanda alla sua pagina di ringraziamento: /typ-contact, /typ-start)
+  hubspotForms: {
+    contact: '41f058a9-e9f6-4aa8-b10f-2d096a9a4d34',
+    start: '2b807853-4b58-4954-95e8-8c3bf2835ae7',
+  },
   iubenda: { siteId: 975554, cookiePolicyId: 8288975 },
   social: {
     linkedin: 'https://www.linkedin.com/in/emilio-zucca/',

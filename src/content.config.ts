@@ -32,6 +32,7 @@ const pagine = defineCollection({
       image: image().optional(),
       imageAlt: z.string().optional(),
       cta: z.boolean().default(true),
+      form: z.enum(['contact', 'start']).optional(), // form HubSpot a fine pagina (al posto del box "Parliamone")
       hero: z.boolean().default(true), // hero con immagine a lato
       service: z.string().optional(), // se presente: markup Service (nome servizio)
       faq,

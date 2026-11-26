@@ -20,7 +20,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
-      filter: (page) => !page.includes('/404'),
+      filter: (page) => !page.includes('/404') && !page.includes('/typ-'),
       serialize(item) {
         const path = new URL(item.url).pathname;
         const lm = lastmods.get(path);

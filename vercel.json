@@ -15,7 +15,7 @@
     { "source": "/author/:path*", "destination": "/#chi-sono", "permanent": true },
     { "source": "/feed/", "destination": "/rss.xml", "permanent": true },
     { "source": "/comments/feed/", "destination": "/rss.xml", "permanent": true },
-    { "source": "/(typ-[a-z-]+|grazie-[a-z-]+)/", "destination": "/contatti/", "permanent": true },
+    { "source": "/(grazie-[a-z-]+)/", "destination": "/contatti/", "permanent": true },
     { "source": "/wp-sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true },
     { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true },
     { "source": "/post-sitemap.xml", "destination": "/sitemap-index.xml", "permanent": true },
