@@ -3,6 +3,7 @@ import startImg from '../assets/img/start1-homepage.jpg';
 import coachImg from '../assets/img/marketing-coaching.jpg';
 import formazioneImg from '../assets/img/formazione.jpg';
 import strategiaImg from '../assets/img/pianificazione-strategica.jpg';
+import datiImg from '../assets/img/strategy1.jpg'; // provvisoria: sostituire con un'immagine dedicata
 import anac from '../assets/img/clients/ANAC.png';
 import italdesign from '../assets/img/clients/italdesign-logo-share.jpg';
 import kidsus from '../assets/img/clients/kidsandus.jpg';
@@ -82,6 +83,14 @@ export const servizi = [
     title: 'Strategia Digitale',
     text: 'Dall’analisi del posizionamento al piano operativo: le fondamenta del marketing della tua azienda.',
     image: strategiaImg,
+  },
+  {
+    href: '/decisioni-basate-sui-dati/',
+    label: 'Decidere con i dati',
+    kicker: 'Dati',
+    title: 'Decidere con i dati',
+    text: 'Quali decisioni puoi già prendere con i dati che hai, cosa ti manca e cosa iniziare a raccogliere.',
+    image: datiImg,
   },
 ];
 
