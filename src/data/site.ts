@@ -3,7 +3,7 @@ import startImg from '../assets/img/start1-homepage.jpg';
 import coachImg from '../assets/img/marketing-coaching.jpg';
 import formazioneImg from '../assets/img/formazione.jpg';
 import strategiaImg from '../assets/img/pianificazione-strategica.jpg';
-import datiImg from '../assets/img/strategy1.jpg'; // provvisoria: sostituire con un'immagine dedicata
+import datiImg from '../assets/img/decidere-con-i-dati.webp';
 import anac from '../assets/img/clients/ANAC.png';
 import italdesign from '../assets/img/clients/italdesign-logo-share.jpg';
 import kidsus from '../assets/img/clients/kidsandus.jpg';
