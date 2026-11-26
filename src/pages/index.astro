@@ -15,6 +15,11 @@ const faq = [
   { q: 'Serve conoscere la tecnologia per fare marketing?', a: 'No. Un sito o una pagina social sono solo strumenti: senza una strategia a monte non producono risultati. Il lavoro di coaching serve proprio a capire come funzionano le cose senza dover studiare la tecnologia né frequentare corsi tecnici.' },
   { q: 'Quanto dura una collaborazione?', a: 'Dipende dall’esigenza: per una domanda puntuale può bastare un’ora, per sbloccare una parte del piano marketing un paio di giornate, per partire da zero un percorso più lungo. I pacchetti di consulenza sono ritagliati sulle esigenze, senza i lunghi vincoli temporali tipici di agenzie e consulenti.' },
   { q: 'Dove lavora Emilio Zucca?', a: 'Lo studio è a Roma (via Giovanni Re 105) e la consulenza è rivolta ad aziende di tutta Italia: gli incontri possono svolgersi anche in videochiamata.' },
+  { q: 'Ci si occupa anche di intelligenza artificiale e automazione dei processi?', a: 'Sì, ma attraverso InnovazionePMI, il progetto dedicato all’innovazione per le PMI: AI, automazione dei processi e adozione della tecnologia. Qui si definisce la strategia di marketing e comunicazione, lì la si rende operativa con gli strumenti giusti. Prima l’analisi, poi la tecnologia.' },
+  { q: 'Da dove parto se voglio introdurre l’AI in azienda?', a: 'Non dallo strumento, ma dai processi: quali attività fanno perdere tempo, dove si sbaglia più spesso, cosa conviene davvero automatizzare. Con InnovazionePMI si parte da un’analisi di questi aspetti e si introduce l’AI solo dove porta un vantaggio misurabile.' },
+  { q: 'Che differenza c’è tra Emilio Zucca Web Strategies e InnovazionePMI?', a: 'Emilio Zucca Web Strategies si occupa di marketing strategico e comunicazione digitale: posizionamento, target, piano di azioni, formazione. InnovazionePMI si occupa di innovazione, intelligenza artificiale e automazione dei processi. I due percorsi si integrano, e si possono attivare insieme o separatamente.' },
+  { q: 'Quanto costa una consulenza?', a: 'Dipende dall’esigenza e dalla durata: una consulenza puntuale ha un costo molto diverso da un percorso di più mesi. Dopo una prima chiacchierata conoscitiva, senza impegno, ricevi una proposta con ambito, tempi e costi definiti.' },
+  { q: 'La consulenza è adatta solo alle grandi aziende?', a: 'No: la consulenza è pensata soprattutto per PMI e imprenditori che vogliono fare marketing in modo consapevole, senza strutture interne dedicate e senza lunghi vincoli contrattuali.' },
 ];
 
 
@@ -33,7 +38,7 @@ const fasi = [
     <div class="wrap hero-in">
       <p class="eyebrow">Emilio Zucca Web Strategies</p>
       <h1>Consulenza di <span class="mark-d">Innovazione, Marketing</span> e Comunicazione Digitale</h1>
-      <p class="hero-lead">Prima l’analisi e la strategia, poi la tecnologia.<br />Niente trucchi, ricette segrete né promesse milionarie da guru.</p>
+      <p class="hero-lead">Prima l’analisi e la strategia, poi la tecnologia: intelligenza artificiale compresa.<br />Niente trucchi, ricette segrete né promesse milionarie da guru.</p>
       <div class="hero-cta">
         <a class="btn" href="#servizi">Scopri i servizi</a>
         <a class="btn btn--ghost" href="/contatti/">Parliamone</a>
@@ -49,8 +54,8 @@ const fasi = [
       </div>
       <div class="prose-l">
         <p>Aprire un negozio in un luogo casuale, senza aver studiato <strong>mercato</strong>, <strong>competitor</strong> e <strong>potenziali clienti</strong>, non è una garanzia di successo.</p>
-        <p>Lo stesso vale per il web: “aprire un sito” o “creare una pagina Facebook” saltando lo studio preventivo di una <strong>strategia</strong> non porta risultati consistenti. <strong>Un sito o una pagina social da soli non fanno niente</strong>: sono strumenti utili solo dentro un disegno più ampio.</p>
-        <p>Pensi di “fare marketing” assoldando il social media manager di turno o il freelance che sviluppa il sito? Parliamone prima.</p>
+        <p>Lo stesso vale per il digitale: “aprire un sito”, “stare sui social” o “introdurre l’intelligenza artificiale” saltando lo studio preventivo di una <strong>strategia</strong> non porta risultati consistenti. <strong>Un sito, un profilo social o un tool di AI da soli non fanno niente</strong>: sono strumenti utili solo dentro un disegno più ampio.</p>
+        <p>Pensi di “fare marketing” assoldando il social media manager di turno, il freelance che sviluppa il sito o l’ultimo strumento di moda? Parliamone prima. E quando la strategia richiede AI e automazione dei processi, ci pensa <a href="https://www.innovazionepmi.it/" rel="noopener">InnovazionePMI</a>.</p>
         <p><a class="btn" href="/contatti/">Prenota una chiacchierata conoscitiva</a></p>
       </div>
     </div>
@@ -122,19 +127,6 @@ const fasi = [
     </div>
   </section>
 
-  <section class="section">
-    <div class="wrap video">
-      <div>
-        <p class="eyebrow">In 2 minuti</p>
-        <h2>Marketing a breve o a lungo termine?</h2>
-        <p>Una riflessione video su un dilemma che incontrano quasi tutti gli imprenditori.</p>
-      </div>
-      <div class="video-frame">
-        <iframe src="https://www.youtube-nocookie.com/embed/zs3mWNlHBh4" title="Marketing a breve o a lungo termine?" loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </div>
-  </section>
-
   <section class="section section--alt clients">
     <div class="wrap">
       <p class="eyebrow">Fiducia</p>
@@ -200,10 +192,6 @@ const fasi = [
   .role { font-family: var(--font-head); font-weight: 600; color: var(--ink-2); margin-top: -.4rem; }
   .social-row { display: flex; gap: 1.2rem; font-family: var(--font-head); font-weight: 600; }
 
-  .video { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
-  .video-frame { aspect-ratio: 16/9; border-radius: var(--radius); overflow: hidden; background: #000; }
-  .video-frame iframe { width: 100%; height: 100%; border: 0; }
-
   .logos { list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.2rem; align-items: center; }
   .logos li { background: #fff; border-radius: 12px; padding: 1.2rem; display: grid; place-items: center; height: 100px; border: 1px solid var(--line); }
   .logos :global(img) { max-height: 56px; width: auto; object-fit: contain; filter: grayscale(1); opacity: .75; transition: .2s; }
@@ -215,7 +203,7 @@ const fasi = [
   .cta .btn:hover { background: #222; }
 
   @media (max-width: 800px) {
-    .split, .founder, .video { grid-template-columns: 1fr; }
+    .split, .founder { grid-template-columns: 1fr; }
     .founder :global(img) { max-width: 320px; }
   }
 </style>
